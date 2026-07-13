@@ -13,8 +13,8 @@ function Login({ onAuth }: { onAuth: (user: any, token: string) => void }) {
       password,
     };
     try {
-      // Customer app ke liye sahi live backend route
-      const response = await fetch('https://zamato-backend.onrender.com/customer/login', {
+      // Customer app ke liye sahi API Endpoint
+      const response = await fetch('https://zamato-backend.onrender.com/api/customer/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ function Login({ onAuth }: { onAuth: (user: any, token: string) => void }) {
       setMobile('');
       setPassword('');
       
-      // Customer login ke baad seedhe home page par le jayega
+      // Customer dashboard nahi, seedhe Home page par navigate karega
       navigate('/');
     } catch (error) {
       console.error('Error:', error);
@@ -44,7 +44,6 @@ function Login({ onAuth }: { onAuth: (user: any, token: string) => void }) {
     <div>
       <div className="flex items-center justify-center h-screen">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={loginHandler}>
-          
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Mobile Number
           </label>

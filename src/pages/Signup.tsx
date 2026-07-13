@@ -29,8 +29,8 @@ function Signup({ onAuth }: SignupProps) {
     }
 
     try {
-      // Customer registration ke liye sahi live backend route
-      const response = await fetch('https://zamato-backend.onrender.com/customer/register', {
+      // Customer registration ke liye sahi API Endpoint
+      const response = await fetch('https://zamato-backend.onrender.com/api/customer/register', {
         method: 'POST',
         body: formData,
       });
@@ -47,7 +47,7 @@ function Signup({ onAuth }: SignupProps) {
       setPassword('');
       setSelectedImage(null);
       
-      // Signup hote hi customer seedhe main home page par chala jayega
+      // `/dashboard` galat tha, yahan customer home (`/`) par redirect hoga
       navigate('/');
     } catch (error) {
       console.error('Error:', error);
@@ -59,7 +59,6 @@ function Signup({ onAuth }: SignupProps) {
     <div>
       <div className="flex items-center justify-center h-screen">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={loginHandler}>
-          
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Mobile Number
           </label>

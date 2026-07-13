@@ -1,6 +1,6 @@
 import { MenuItem, Restaurant } from '../context/AppContext';
 
-const API_URL = 'https://zamato-backend.onrender.com';
+const API_URL = 'https://zamato-backend.onrender.com/api';
 
 type ApiProduct = {
   id: number;
@@ -63,6 +63,7 @@ export function restaurantsToList(apiRestaurants: ApiRestaurant[]): Restaurant[]
       category: product.category || 'Featured',
       isVeg: product.isVeg,
       isBestseller: product.isBestseller,
+      active: product.active,
     }));
 
     const cuisines = vendor.cuisine
