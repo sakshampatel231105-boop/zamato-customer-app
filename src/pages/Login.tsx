@@ -10,7 +10,7 @@ function Login({ onAuth }: { onAuth: (user: any, token: string) => void }) {
     e.preventDefault();
     const userData = { mobile, password };
     try {
-      // Sahi backend user endpoint
+      // Backend ke app.use('/api/users', userRoutes) ke mutabik sahi endpoint
       const response = await fetch('https://zamato-backend.onrender.com/api/users/login', {
         method: 'POST',
         headers: {

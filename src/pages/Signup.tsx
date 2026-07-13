@@ -27,7 +27,7 @@ function Signup({ onAuth }: SignupProps) {
     }
 
     try {
-      // Sahi backend user endpoint
+      // Backend ke app.use('/api/users', userRoutes) ke mutabik sahi endpoint
       const response = await fetch('https://zamato-backend.onrender.com/api/users/register', {
         method: 'POST',
         body: formData,

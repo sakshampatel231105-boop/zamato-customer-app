@@ -1,5 +1,6 @@
 import { MenuItem, Restaurant } from '../context/AppContext';
 
+// Backend ka base URL bina kisi slash ke
 const API_URL = 'https://zamato-backend.onrender.com/api';
 
 type ApiProduct = {
@@ -40,18 +41,22 @@ type ApiRestaurant = {
 };
 
 export async function fetchCategories() {
+  // Sahi path: /api/categories
   const response = await fetch(`${API_URL}/categories`);
   if (!response.ok) throw new Error('Unable to load categories');
   return response.json() as Promise<ApiCategory[]>;
 }
 
 export async function fetchRestaurants() {
-  const response = await fetch(`${API_URL}/vendors/restaurants`);
+  // Sahi path: /api/vendors
+  const response = await fetch(`${API_URL}/vendors`);
   if (!response.ok) throw new Error('Unable to load restaurants');
   return response.json() as Promise<ApiRestaurant[]>;
 }
 
 export function restaurantsToList(apiRestaurants: ApiRestaurant[]): Restaurant[] {
+  if (!Array.isArray(apiRestaurants)) return [];
+  
   return apiRestaurants.map((vendor) => {
     const menu: MenuItem[] = (vendor.products || []).map((product) => ({
       id: `vendor-${vendor.id}-product-${product.id}`,
