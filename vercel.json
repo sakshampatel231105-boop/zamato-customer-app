@@ -1,4 +1,8 @@
-git add .
-git commit -m "Fixed brackets in vercel json"
-git push origin main
-vercel --prod
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
