@@ -8,13 +8,10 @@ function Login({ onAuth }: { onAuth: (user: any, token: string) => void }) {
 
   const loginHandler = async (e: React.FormEvent) => {
     e.preventDefault();
-    const userData = {
-      mobile,
-      password,
-    };
+    const userData = { mobile, password };
     try {
-      // Customer app ke liye sahi API Endpoint
-      const response = await fetch('https://zamato-backend.onrender.com/api/customer/login', {
+      // Sahi backend user endpoint
+      const response = await fetch('https://zamato-backend.onrender.com/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,8 +28,6 @@ function Login({ onAuth }: { onAuth: (user: any, token: string) => void }) {
       alert('Logged in successfully');
       setMobile('');
       setPassword('');
-      
-      // Customer dashboard nahi, seedhe Home page par navigate karega
       navigate('/');
     } catch (error) {
       console.error('Error:', error);
@@ -44,9 +39,7 @@ function Login({ onAuth }: { onAuth: (user: any, token: string) => void }) {
     <div>
       <div className="flex items-center justify-center h-screen">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={loginHandler}>
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Mobile Number
-          </label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">Mobile Number</label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
@@ -54,10 +47,7 @@ function Login({ onAuth }: { onAuth: (user: any, token: string) => void }) {
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
           />
-
-          <label className="block text-gray-700 text-sm font-bold mb-2 mt-4">
-            Password
-          </label>
+          <label className="block text-gray-700 text-sm font-bold mb-2 mt-4">Password</label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="password"
@@ -65,19 +55,12 @@ function Login({ onAuth }: { onAuth: (user: any, token: string) => void }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
-          >
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">
             Login
           </button>
-
           <p className="mt-4 text-sm text-gray-600">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-black hover:text-blue-700 cursor-pointer">
-              Sign up
-            </Link>
+            <Link to="/signup" className="text-black hover:text-blue-700 cursor-pointer">Sign up</Link>
           </p>
         </form>
       </div>
